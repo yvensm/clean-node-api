@@ -4,14 +4,16 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "test:staged": "jest"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "git-commit-msg-linter": "^3.2.8",
-    "husky": "^7.0.4"
+    "husky": "^7.0.4",
+    "ts-node": "^10.4.0"
   },
   "devDependencies": {
     "@types/jest": "^27.4.0",
