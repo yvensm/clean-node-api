@@ -1,4 +1,4 @@
-import { badRequest, serverError } from '../../helpers/http-helper';
+import { badRequest, serverError, success } from '../../helpers/http-helper';
 import {
   HttpRequest,
   HttpResponse,
@@ -44,7 +44,7 @@ export class SignUpController implements Controller {
 
       const account = this.addAccount.add({ name, email, password });
 
-      return { statusCode: 200, body: account };
+      return success(account);
     } catch (error) {
       return serverError();
     }
