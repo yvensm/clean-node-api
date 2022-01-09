@@ -12,6 +12,7 @@ import {
   AccountModel
 } from './signup-protocols';
 
+import * as MyLib from './signup-protocols';
 interface SutTypes {
   sut: SignUpController;
   emailValidatorStub: EmailValidator;
@@ -53,6 +54,10 @@ const makeSut = (): SutTypes => {
 };
 
 describe('SignUp Controller', () => {
+  test('Should have exports', () => {
+    expect(typeof MyLib).toBe('object');
+  });
+
   test('Should return 400 if no name is provided', async () => {
     const { sut } = makeSut();
     const httpRequest = {
