@@ -22,6 +22,7 @@ const makeEncrypter = (): Encrypter => {
   }
   return new EncrypterStub();
 };
+
 describe('DbAddAccount Usecase', () => {
   test('Should call Encrypter witch correct password', () => {
     const { sut, encrypterStub } = makeSut();
@@ -33,5 +34,19 @@ describe('DbAddAccount Usecase', () => {
     };
     sut.add(account);
     expect(encryptSpy).toHaveBeenCalledWith('valid_password');
+  });
+
+  test('Should throw if encrypter throws', async () => {
+    const { sut, encrypterStub } = makeSut();
+    jest
+      .spyOn(encrypterStub, 'encrypt')
+      .mockReturnValueOnce(Promise.reject(new Error()));
+    const account = {
+      email: 'valid_email@mail.com',
+      name: 'valid_name',
+      password: 'valid_password'
+    };
+    const promise = sut.add(account);
+    await expect(promise).rejects.toThrow();
   });
 });
